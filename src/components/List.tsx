@@ -3,7 +3,6 @@ import { PropType } from "vue";
 export interface ListComponentProp {
   data: Array<{ name: string }>;
   activeIndex: number;
-  toggle: (index: number) => void;
 }
 
 /**
@@ -11,13 +10,15 @@ export interface ListComponentProp {
  * 1. 使用`list`数据渲染列表元素 (ul/li)
  * 2. 当点击列表子元素时,将其文本颜色更改为红色
 */
-export const ListComponent = (props: ListComponentProp, { attrs, emit }) => {
+export const ListComponent = (props: ListComponentProp, { attrs, emit }: Record<string, any>) => {
   const items = props.data.map((v, idx) => {
     return (
       <li
         key={idx}
         class={`${idx === props.activeIndex ? 'active' : ''}`}
-        onClick={() => { emit('toggle', idx) }}
+        onClick={() => {
+          emit('toggle', idx);
+        }}
       >
         {v.name}
       </li>
@@ -29,12 +30,12 @@ export const ListComponent = (props: ListComponentProp, { attrs, emit }) => {
   )
 }
 
-// const TestForTsx = () => (
-//   <ListComponent
-//     data={[]}
-//     activeIndex={''}
-//   />
-// )
+const TestForTsx = () => (
+  <ListComponent
+    data={[]}
+    activeIndex={2}
+  />
+)
 
 ListComponent.props = {
   data: {
@@ -47,6 +48,9 @@ ListComponent.props = {
     type: Number,
     default: 0
   },
+};
+
+ListComponent.emits = {
   // emit events
   toggle: {
     type: Function as PropType<(index: number) => void>,

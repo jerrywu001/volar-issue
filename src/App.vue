@@ -25,7 +25,7 @@ function toggle(index: number) {
 <template>
   <list-component
     :data="list"
-    :active-index="'2'"
+    :active-index="activeIndex"
     @toggle="toggle"
   />
 
