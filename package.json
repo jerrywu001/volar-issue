@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "sandpack-vue3": "2.0.3",
+    "sandpack-vue3": "^3.1.2",
     "vue": "^3.2.47"
   },
   "devDependencies": {
